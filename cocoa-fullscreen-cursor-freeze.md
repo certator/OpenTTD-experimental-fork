@@ -219,3 +219,90 @@ Possible approaches:
 3. Defer `ToggleFullscreen` until after the first successful draw / input loop, reducing the race with startup.
 
 Any of these should keep `_cursor.pos` aligned with the OS pointer during the transition.
+
+## Diagnostical logs
+
+```
+[2026-07-25 17:36:35] dbg: [driver:1] Successfully loaded blitter '32bpp-anim'
+[2026-07-25 17:36:35] dbg: [driver:1] OpenGL driver: Apple - Apple M1 Pro (4.1 Metal - 90.5)
+[2026-07-25 17:36:35] dbg: [driver:1] cursor: Cocoa ToggleFullscreen request=true IsFullscreen=false _fullscreen=false
+[2026-07-25 17:36:35] dbg: [driver:1] cursor: Cocoa ToggleFullscreen applied IsFullscreen=true _fullscreen=true
+[2026-07-25 17:36:35] dbg: [driver:1] cursor[cocoa-toggle-fullscreen]: pos=(0, 0) device_abs=(0, 0) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=false
+[2026-07-25 17:36:35] dbg: [driver:1] Successfully probed video driver 'cocoa-opengl'
+[2026-07-25 17:36:35] dbg: [driver:1] video backend: name='cocoa-opengl' info='cocoa-opengl (Apple M1 Pro, 4.1 Metal - 90.5)' fullscreen=true hw_accel=true vsync=false
+[2026-07-25 17:36:35] dbg: [driver:1] Successfully probed sound driver 'cocoa'
+[2026-07-25 17:36:35] dbg: [driver:1] Successfully probed music driver 'cocoa'
+[2026-07-25 17:36:36] dbg: [driver:1] using thread for game-loop
+[2026-07-25 17:36:36] dbg: [driver:1] Switching blitter from '32bpp-anim' to '40bpp-anim'...
+[2026-07-25 17:36:36] dbg: [driver:1] Successfully loaded blitter '40bpp-anim'
+[2026-07-25 17:36:36] dbg: [driver:1] Successfully switched to 40bpp-anim.
+[2026-07-25 17:36:36] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1359, 698) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:37] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1359, 698) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:37] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1361, 701) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1591, 819) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1916, 936) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(2060, 1007) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(2012, 1075) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1786, 1056) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1297, 884) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1195, 866) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1198, 865) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1540, 919) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:35] dbg: [driver:1] cursor[cocoa-toggle-fullscreen]: pos=(0, 0) device_abs=(0, 0) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=false
+[2026-07-25 17:36:35] dbg: [driver:1] Successfully probed video driver 'cocoa-opengl'
+[2026-07-25 17:36:35] dbg: [driver:1] video backend: name='cocoa-opengl' info='cocoa-opengl (Apple M1 Pro, 4.1 Metal - 90.5)' fullscreen=true hw_accel=true vsync=false
+[2026-07-25 17:36:35] dbg: [driver:1] Successfully probed sound driver 'cocoa'
+[2026-07-25 17:36:35] dbg: [driver:1] Successfully probed music driver 'cocoa'
+[2026-07-25 17:36:36] dbg: [driver:1] using thread for game-loop
+[2026-07-25 17:36:36] dbg: [driver:1] Switching blitter from '32bpp-anim' to '40bpp-anim'...
+[2026-07-25 17:36:36] dbg: [driver:1] Successfully loaded blitter '40bpp-anim'
+[2026-07-25 17:36:36] dbg: [driver:1] Successfully switched to 40bpp-anim.
+[2026-07-25 17:36:36] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1359, 698) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:37] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1359, 698) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:37] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1361, 701) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1591, 819) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1916, 936) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(2060, 1007) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(2012, 1075) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1786, 1056) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1297, 884) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1195, 866) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1198, 865) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:38] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1540, 919) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:39] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1927, 982) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:39] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(2103, 1031) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:39] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1990, 1092) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:39] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1561, 994) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:39] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1316, 861) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1318, 859) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1784, 917) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cocoa-poll]: pos=(0, 0) device_abs=(1724, 1061) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor: windowDidEnterFullScreen loc=(1419.5, 703.0) inside=false in_window=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor: windowDidEnterFullScreen did not synthesise mouseEntered (mouse outside view)
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cocoa-fullscreen-enter]: pos=(0, 0) device_abs=(0, 0) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor: cocoa mouseEntered
+[2026-07-25 17:36:40] dbg: [driver:1] cursor: cocoa mouseExited
+[2026-07-25 17:36:40] dbg: [driver:1] cursor: cocoa mouseEntered
+[2026-07-25 17:36:40] dbg: [driver:1] cursor: cocoa mouseExited
+[2026-07-25 17:36:40] dbg: [driver:1] cursor: cocoa mouseEntered
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cursor-update]: pos=(1856, 947) device_abs=(1856, 947) delta=(-37, 63) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cursor-update]: pos=(1327, 878) device_abs=(1327, 878) delta=(-63, -58) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cursor-update]: pos=(1961, 725) device_abs=(1961, 725) delta=(54, 57) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cursor-update]: pos=(1478, 862) device_abs=(1478, 862) delta=(-74, 12) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:40] dbg: [driver:1] cursor[cursor-update]: pos=(1462, 807) device_abs=(1462, 807) delta=(0, -1) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:41] dbg: [driver:1] cursor[cursor-update]: pos=(1451, 826) device_abs=(1451, 826) delta=(-11, 19) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:41] dbg: [driver:1] cursor[cursor-update]: pos=(1311, 847) device_abs=(1311, 847) delta=(-14, -5) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:41] dbg: [driver:1] cursor[cursor-update]: pos=(1305, 824) device_abs=(1305, 824) delta=(1, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:41] dbg: [driver:1] cursor[cursor-update]: pos=(1307, 824) device_abs=(1307, 824) delta=(2, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cursor-update]: pos=(1335, 869) device_abs=(1335, 869) delta=(4, 5) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cocoa-poll]: pos=(1383, 918) device_abs=(1383, 918) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cursor-update]: pos=(1492, 996) device_abs=(1492, 996) delta=(19, 11) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cocoa-poll]: pos=(1608, 1065) device_abs=(1608, 1065) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cursor-update]: pos=(1736, 1120) device_abs=(1736, 1120) delta=(5, 2) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cursor-update]: pos=(1740, 1124) device_abs=(1740, 1124) delta=(2, 3) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cursor-update]: pos=(1757, 1142) device_abs=(1757, 1142) delta=(2, 2) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cursor-update]: pos=(1760, 1175) device_abs=(1760, 1175) delta=(0, 4) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:42] dbg: [driver:1] cursor[cursor-update]: pos=(1759, 1173) device_abs=(1759, 1173) delta=(-1, -2) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:43] dbg: [driver:1] cursor[cursor-update]: pos=(1762, 1143) device_abs=(1762, 1143) delta=(0, -5) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+[2026-07-25 17:36:43] dbg: [driver:1] cursor[cocoa-poll]: pos=(1765, 1134) device_abs=(1765, 1134) delta=(0, 0) in_window=true fix_at=false fullscreen=true visible=false dirty=true
+```
